@@ -20,7 +20,7 @@ if(isset($_GET['btn'])){
 
 <h1 class="mt-4">Create New Produt</h1>
 <!--Create-->
-<form class="row g-3 needs-validation" action="" method="get" novalidate>
+<form class="row g-3 needs-validation" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get" novalidate>
   <div class="col-md-4">
     <label for="validationCustom01" class="form-label">Nome</label>
     <input type="text" name="nome" class="form-control" id="validationCustom01" required>
