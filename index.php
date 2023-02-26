@@ -16,24 +16,23 @@ $pdo = new \App\Model\ProdutoDao();
       <th scope="col">Last</th>
       <th scope="col">Handle</th>
       <th scope="col">Option</th>
-      <th scope="col">Option</th>
     </tr>
   </thead>
   <tbody>
-    <?php foreach ($pdo->read() as $p) :  ?>
+    <?php 
+    $n = 1;
+    foreach ($pdo->read() as $p) :  ?>
       <tr>
-        <th scope="row">1</th>
+        <th scope="row"><?php echo $n?></th>
         <td><?php echo $p['nome'] ?></td>
         <td><?php echo $p['descricao'] ?></td>
         <td><?php echo $p['preco'] ?></td>
         <td>
-          <a href="" class="btn btn-danger ">Eliminar</a>
-        </td>
-        <td>
-          <a href="" class="btn btn-primary">Editar</a>
+          <a href="delete.php?id=<?php echo $p['id'];?>" class="btn btn-danger ">Eliminar</a>
+          <a href="update.php?id=<?php echo $p['id']; ?>" class="btn btn-primary">Editar</a>
         </td>
       </tr>
-    <?php endforeach; ?>
+    <?php $n++; endforeach; ?>
   </tbody>
 </table>
 

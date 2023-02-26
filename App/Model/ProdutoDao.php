@@ -36,9 +36,30 @@ class ProdutoDao
         $sql = 'UPDATE produtos SET nome = ?, descricao = ?, preco = ? WHERE id = ?'; 
         $stmt = Conexao::getConn()->prepare($sql);
         $stmt->execute(array($p->getNome(), $p->getDescricao(), $p->getPreco(), $p->getId()));
+        if($stmt->rowcount()>0){
+            return true;
+        }
     }
 
     function delete($id)
     {
+        $sql = 'DELETE FROM produtos WHERE id = ?';
+        $stmt = Conexao::getConn()->prepare($sql);
+        $stmt->execute(array($id));
+
+        if($stmt->rowcount()>0){
+            return true;
+        }
+    }
+
+    function getProduto($id){
+        $sql = 'SELECT * FROM produtos WHERE id = ?';
+        $stmt = Conexao::getConn()->prepare($sql);
+        $stmt->execute(array($id));
+
+        if($stmt->rowcount()>0){
+            return $resultado = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        }
+        return [];
     }
 }
